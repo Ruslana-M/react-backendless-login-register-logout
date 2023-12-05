@@ -1,18 +1,25 @@
-
-import './App.css';
-import { useState } from 'react';
-
+import "./App.css";
+import { Route, Routes, Navigate } from "react-router-dom";
+import Home from "./layout/Home";
+import Nav from "./layout/Nav";
+import Footer from "./layout/Footer";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
 
   return (
     <div className="App">
-      <input type="email" placeholder='E-Mail:'value={email}/>
-      <input type="password" placeholder='password:' value={password} />
-  
+      <Nav />
+
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} /> {/* Default route redirects to /login */}
+        <Route path="/login"element={<Login/>}/>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/home" element={<Home/>}/>
+      </Routes>
+
+      <Footer />
     </div>
   );
 }
